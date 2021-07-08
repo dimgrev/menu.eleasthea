@@ -11,13 +11,7 @@
     
     <link rel="stylesheet" href="style.css"/>
 
-    <script
-        src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous">
-    </script>
-
-    <script src="../lib/turn.js"></script>
+    
 </head>
 <body>
     <div class="menu-section d-flex justify-content-center align-items-center">
@@ -46,10 +40,19 @@
         </a> 
     </div>
 
+    <script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous">
+    </script>
+
+    <script src="../lib/turn.min.js"></script>
+
 
     <script type="text/javascript">
       $("#flipbook").turn({
-          autoCenter: false,
+          gradients: true,
+          acceleration:true
       });
     </script>
 
