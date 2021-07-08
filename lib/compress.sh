@@ -4,26 +4,16 @@
 
 # --compilation_level ADVANCED_OPTIMIZATIONS 
 
-SCRIPTS=("turn" "turn.html4" "zoom" "scissor")
+SCRIPTS=("turn" "zoom" "scissor")
 SCRIPTS_LEN=${#SCRIPTS[@]}
-SCRIPTS_COMMENT="/* turn.js 4.1.0 | Copyright (c) 2012 Emmanuel Garcia | turnjs.com | turnjs.com/license.txt */"
+SCRIPTS_COMMENT="/* turn.js 4.1.1 | Copyright (c) 2012 Emmanuel Garcia - 2019 Raffaele Morganti | turnjs.com | turnjs.com/license.txt */"
 
 echo -e "${SCRIPTS_COMMENT}\n" > comment.js
 
-if [ ! -f /tmp/compiler.jar ];
-then
-	echo "Downloading Google Closure Compiler..."
-	curl --silent -L http://closure-compiler.googlecode.com/files/compiler-latest.zip > /tmp/compiler-latest.zip
-	unzip  -o /tmp/compiler-latest.zip -d /tmp
-	rm /tmp/compiler-latest.zip
-	chmod +x /tmp/compiler.jar
-fi
-
-	echo "Making Minimized files..."
-
 for (( i=0; i<${SCRIPTS_LEN}; i++ ));
 do
-	java -jar "/tmp/compiler.jar" --js ${SCRIPTS[$i]}.js > ${SCRIPTS[$i]}.closure.js
+
+	java -jar "compiler.jar" --js ${SCRIPTS[$i]}.js > ${SCRIPTS[$i]}.closure.js
 
 	cat comment.js ${SCRIPTS[$i]}.closure.js  > ${SCRIPTS[$i]}.min.js 
 
