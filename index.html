@@ -10,32 +10,36 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <style>
+        
+        #album{
+            margin: 2% auto;
+            width: 98%;
+            height: 1000px;
+        }
+
+        .album .turn-page{
+	        background-color:#ccc;
+            background-size: 100% 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container">
-        <div style="
-            position: absolute;
-            width: inherit;
-            height: 515vw;
-            overflow: hidden;
-        "></div>
-        <div class="catalog-page">
-            <img src="catalogImages/Untitled-21.jpg" alt="">
-        </div>
-        <br>
-        <div class="catalog-page">
-            <img src="catalogImages/Untitled-22.jpg" alt="">
-        </div>
-        <br>
-        <div class="catalog-page">
-            <img src="catalogImages/Untitled-23.jpg" alt="">
-        </div>
-        <br>
-        <div class="catalog-page">
-            <img src="catalogImages/Untitled-24.jpg" alt="">
-        </div>
+
+    <div id="album">
+        <div style="background-image: url(catalogImages/Untitled-21.jpg); background-size: 100% 100%;"></div>
+        <div style="background-image: url(catalogImages/Untitled-22.jpg); background-size: 100% 100%;"></div>
+        <div style="background-image: url(catalogImages/Untitled-23.jpg); background-size: 100% 100%;"></div>
+        <div style="background-image: url(catalogImages/Untitled-24.jpg); background-size: 100% 100%;"></div>
+        
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="turn.min.js"></script>
+    <script>    
+        $('#album').turn({gradients: true, acceleration: true});
+    </script>
 </body>
 
 </html>
