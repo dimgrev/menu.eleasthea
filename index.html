@@ -11,34 +11,69 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <style>
-        
+        .flipbook{
+            overflow: hidden;
+        }
+
         #album{
             margin: 2% auto;
-            width: 98%;
-            height: 1000px;
+            width: 1000px;
+            height: 700px;
         }
 
         .album .turn-page{
 	        background-color:#ccc;
-            background-size: 100% 100%;
+            background-position: cover;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="album">
-        <div style="background-image: url(catalogImages/Untitled-21.jpg); background-size: 100% 100%;"></div>
-        <div style="background-image: url(catalogImages/Untitled-22.jpg); background-size: 100% 100%;"></div>
-        <div style="background-image: url(catalogImages/Untitled-23.jpg); background-size: 100% 100%;"></div>
-        <div style="background-image: url(catalogImages/Untitled-24.jpg); background-size: 100% 100%;"></div>
-        
+    <div class="flipbook">
+
+        <div id="album">
+            <div class="next" style="background-image: url(catalogImages/Untitled-21.jpg); background-size: 100% 100%;"></div>
+            <div class="prev" style="background-image: url(catalogImages/Untitled-22.jpg); background-size: 100% 100%;"></div>
+            <div class="next" style="background-image: url(catalogImages/Untitled-23.jpg); background-size: 100% 100%;"></div>
+            <div class="prev" style="background-image: url(catalogImages/Untitled-24.jpg); background-size: 100% 100%;"></div>
+            
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="turn.min.js"></script>
+    <script src="turn.js"></script>
     <script>    
-        $('#album').turn({gradients: true, acceleration: true});
+        var isCurrentlyOnTurning = false;
+
+        $("#album").turn({
+            acceleration:true,
+            gradients: true,
+            when: {
+            turned: function(event, page, pageObj) {
+                isCurrentlyOnTurning=false;
+            },
+            turning: function(event, page, pageObj) {
+                if (isCurrentlyOnTurning) {
+                    event.preventDefault();
+                }else{
+                    isCurrentlyOnTurning = true;
+                }
+            }
+            }
+        });
+
+        $("#album").on("click", function(event, pageObject, corner) {    
+            if (corner=="tl" || corner=="bl" || corner=="br" || corner=="tr") {
+            event.preventDefault();      
+            }
+        });
+        $(".next").on("click",() => {
+            $("#album").turn("next");
+        });
+        $(".prev").on("click",() => {
+            $("#album").turn("previous");
+        });
     </script>
 </body>
 
