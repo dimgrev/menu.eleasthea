@@ -13,24 +13,20 @@ $(window).resize(() => {
 });
 
 $(document).ready(function() {
-function animateHands(){
-    $('#pointer').animate({width:'35px'}, 800, animateHandb)
-}
-function animateHandb(){
-    $('#pointer').animate({width:'50px'}, 800, animateHands)
-}
-animateHands();
-});
-
-$('#pointer').on("click", () => { goToNext(); });
-
-$(document).ready(function() {
+    hideLArrow();
     if(x.matches){
+        $("#album").bind('start', 
+            function (event, pageObject, corner)
+            {
+                if (corner=="tl" || corner=="bl" || corner=="br" || corner == 'tr') {
+                    event.preventDefault();
+                }
+            }
+        );
     }
     else{
-        $(".page-wrapper")[5].remove();
-        $(".page-wrapper")[5].remove();
         $(".page-wrapper")[4].remove();
+        $(".page-wrapper")[3].remove();
         $(".shadow").remove();
         $(".paging").remove();
     }
@@ -39,28 +35,24 @@ $(document).ready(function() {
 //multilingual menu
 var changeToEnglish = () => {
     if(x.matches){
-        $('.p1').css('background-image','url("./images/english/1flp2.jpg")');
+        $('.p1').css('background-image','url("./images/english/1h.jpg")');
         $('.p3').css('background-image','url("./images/english/2.jpg")');
         $('.p5').css('background-image','url("./images/english/3.jpg")');
-        $('.p7').css('background-image','url("./images/english/4.jpg")');
     }else{
-        $('.p1').css('background-image','url("./images/english/1.jpg")');
+        $('.p1').css('background-image','url("./images/english/1h.jpg")');
         $('.p2').css('background-image','url("./images/english/2.jpg")');
         $('.p3').css('background-image','url("./images/english/3.jpg")');
-        $('.p4').css('background-image','url("./images/english/4.jpg")');
     }
 };
 var changeToGreek = () => {
     if(x.matches){
-        $('.p1').css('background-image','url("./images/greek/1flp2.jpg")');
+        $('.p1').css('background-image','url("./images/greek/1h.jpg")');
         $('.p3').css('background-image','url("./images/greek/2.jpg")');
         $('.p5').css('background-image','url("./images/greek/3.jpg")');
-        $('.p7').css('background-image','url("./images/greek/4.jpg")');
     }else{
-        $('.p1').css('background-image','url("./images/greek/1.jpg")');
+        $('.p1').css('background-image','url("./images/greek/1h.jpg")');
         $('.p2').css('background-image','url("./images/greek/2.jpg")');
         $('.p3').css('background-image','url("./images/greek/3.jpg")');
-        $('.p4').css('background-image','url("./images/greek/4.jpg")');
     }
 };
 
@@ -72,66 +64,113 @@ $("#album").turn({
     acceleration:true,
     gradients: true,
     when: {
-    turned: function(event, page, pageObj) {   
-        isCurrentlyOnTurning=false;
-        if(pg == 1){
-            $('#pointer').show();
-        }
-    },
-    turning: function(event, page, pageObj) {
-        if (isCurrentlyOnTurning) {
-            event.preventDefault();
-        }else{
-            isCurrentlyOnTurning = true;
-            if (page%2 == 0){
-                increasePage(page)
+        turned: function(event, page, pageObj) {   
+            isCurrentlyOnTurning=false;
+        },
+        turning: function(event, page, pageObj) {
+            pg = page;
+            if (isCurrentlyOnTurning) {
+                event.preventDefault();
             }else{
-                decreasePage()
+                if(!x.matches && page == 4){
+                    event.preventDefault();
+                }else{
+                    isCurrentlyOnTurning = true;
+                    if (page%2 == 0){
+                        increasePage(page)
+                    }else{
+                        decreasePage(page);
+                    }
+                }
             }
         }
-        $('#pointer').hide();
-    }
     }
 });
 
+$(".fa-arrow-left").on("click", () => { 
+    goToPrev();
+});
+
+$(".fa-arrow-right").on("click", () => {
+    callVibr();
+    goToNext(); 
+});
+
 // when clicking on the even pages go to the next page.
-$(".even").on("click", () => { goToPrev() });
+$(".even").on("click", () => { 
+    goToPrev();
+});
 
 // when clicking on the odd pages go to the next page.
 $(".odd").on("click", () => {
-    if(vibr){
-        window.navigator.vibrate(150);
-        vibr = false;
-    }
-    goToNext() 
+    callVibr();
+    goToNext();
 });
 
 // helper methods.
 var goToNext = () => {
-    $('#pointer').hide();
-    $('#album').turn('next')
-    if(pg == 4){
-        vibr = true;
-    }
-    else{
+        $('#album').turn('next');
+        if(pg == 5 || (!x.matches && pg == 4)){
+            vibr = true;
+            //hidePointer();
+        }
+        else{
+            vibr = false;
+        }
+};   
+
+var goToPrev = () => {
+        $('#album').turn('previous');
+        vibr = false;    
+};
+
+function callVibr(){
+    if(vibr){
+        window.navigator.vibrate(150);
         vibr = false;
     }
-};   
-var goToPrev = () => {
-    $('#album').turn('previous')
-    vibr = false;
+};
+
+function hideLArrow(){
+    $(".fa-arrow-left").hide();
+};
+
+function hideRArrow(){
+    $(".fa-arrow-right").hide();
+};
+
+function showLArrow(){
+    $(".fa-arrow-left").show();
+};
+
+function showRArrow(){
+    $(".fa-arrow-right").show();
 };
 
 function increasePage(page){
-    if(pg < 4){
-        if(page == 2 || page == 4 || page == 6){
-            $(".paging").text(++pg +'/4');
+    ++pg;
+    showRArrow();
+    showLArrow();
+    
+    if(x.matches){
+        if(page == 4){
+            hideRArrow();
+            showLArrow();
+        }
+    }else{
+        if(page == 2){
+            hideRArrow();
+            showLArrow();
         }
     }
 };
 
-function decreasePage(){
-    if(pg > 1){
-        $(".paging").text(--pg +'/4');
+function decreasePage(page){
+    --pg;
+    showRArrow();
+    showLArrow();
+    if(page == 1){
+        hideLArrow();
+        showRArrow();
     }
 };
