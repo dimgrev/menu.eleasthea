@@ -6,19 +6,29 @@ body{
     min-height: 100vh;
 }
 
+#nav-arrows{
+    font-size: 25px;
+    text-align: center;
+    color: #7a7a7a;
+}
+
+#nav-arrows > .fas{
+    margin: 0 15px 25px 15px;
+}
+
 #pointer{
-    width: 50px;
+    width: 40px;
     filter: grayscale(100%);
     opacity: 50%;
     position: absolute;
     margin: auto;
-    top: 55vh;
-    left: 85vw;
+    top: 50%;
+    right: 5vw;
     z-index: 10;
 }
 
 .p1{
-    background-image: url('./images/greek/1flp.jpg');
+    background-image: url('./images/greek/1h.jpg');
 }
 
 .p2{
@@ -30,7 +40,7 @@ body{
 }
 
 .p4{
-    background-image: url('./images/greek/4.jpg');
+    background-image: url('./images/wb1.jpg');
 }
 
 .lang-select-btn{
@@ -45,16 +55,6 @@ body{
 .lang-select-container{
     margin-top: 25px;
 }
-
-/* .catalog-page{
-    /* border: 7px rgb(255, 255, 255) solid;
-    border-radius: 25px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
-    display: inline-block;
-    margin: 6px 1px 3px 1px;
-    width: 90vw;
-    max-width: 99vw;
-} */
 
 img{
     width:100%;
@@ -130,11 +130,11 @@ img{
     }
     
     .p1{
-        background-image: url('./images/greek/1flp2.jpg');
+        background-image: url('./images/greek/1h.jpg');
     }
 
     .p2{
-        background-image: url('./images/wb.jpg');
+        background-image: url('./images/wbh.jpg');
     }
 
     .p3{
@@ -142,7 +142,7 @@ img{
     }
 
     .p4{
-        background-image: url('./images/wb.jpg');
+        background-image: url('./images/wbh.jpg');
     }
     
     .p5{
@@ -150,10 +150,10 @@ img{
     }
 
     .p6{
-        background-image: url('./images/wb.jpg');
+        background-image: url('./images/wbh.jpg');
     }
 
     .p7{
-        background-image: url('./images/greek/4.jpg');
+        background-image: url('./images/greek/4a.jpg');
     }
 }
