@@ -5,10 +5,10 @@ var vibr = false;
 // on window resize, update the size of the flipbook to keep aspect ratio. (width , heigth)
 $(window).resize(() => {
     if(x.matches){
-        $("#album").turn("size", window.innerWidth * 1.77 , (window.innerWidth * 1.77) / 1.414 )
+        $("#album").turn("size", window.innerWidth * 1.77 , (window.innerWidth * 1.77) / 1.107422 )
     }else{
         location.reload()
-        $("#album").turn("size", window.innerWidth * 0.97 , (window.innerWidth * 0.97) / 1.414 )
+        $("#album").turn("size", window.innerWidth * 0.97 , (window.innerWidth * 0.97) / 1.107422 )
     }
 });
 
@@ -26,7 +26,7 @@ $(document).ready(function() {
     }
     else{
         $(".page-wrapper")[4].remove();
-        $(".page-wrapper")[3].remove();
+        $(".page-wrapper")[5].remove();
         $(".shadow").remove();
         $(".paging").remove();
     }
@@ -38,10 +38,12 @@ var changeToEnglish = () => {
         $('.p1').css('background-image','url("./images/english/1h.jpg")');
         $('.p3').css('background-image','url("./images/english/2.jpg")');
         $('.p5').css('background-image','url("./images/english/3.jpg")');
+        $('.p7').css('background-image','url("./images/english/4.jpg")');
     }else{
         $('.p1').css('background-image','url("./images/english/1h.jpg")');
         $('.p2').css('background-image','url("./images/english/2.jpg")');
         $('.p3').css('background-image','url("./images/english/3.jpg")');
+        $('.p4').css('background-image','url("./images/english/4.jpg")');
     }
 };
 var changeToGreek = () => {
@@ -49,10 +51,12 @@ var changeToGreek = () => {
         $('.p1').css('background-image','url("./images/greek/1h.jpg")');
         $('.p3').css('background-image','url("./images/greek/2.jpg")');
         $('.p5').css('background-image','url("./images/greek/3.jpg")');
+        $('.p7').css('background-image','url("./images/greek/4.jpg")');
     }else{
         $('.p1').css('background-image','url("./images/greek/1h.jpg")');
         $('.p2').css('background-image','url("./images/greek/2.jpg")');
         $('.p3').css('background-image','url("./images/greek/3.jpg")');
+        $('.p4').css('background-image','url("./images/greek/4.jpg")');
     }
 };
 
@@ -72,7 +76,7 @@ $("#album").turn({
             if (isCurrentlyOnTurning) {
                 event.preventDefault();
             }else{
-                if(!x.matches && page == 4){
+                if(!x.matches && page == 5){
                     event.preventDefault();
                 }else{
                     isCurrentlyOnTurning = true;
@@ -110,7 +114,7 @@ $(".odd").on("click", () => {
 // helper methods.
 var goToNext = () => {
         $('#album').turn('next');
-        if(pg == 5 || (!x.matches && pg == 4)){
+        if(pg == 7){
             vibr = true;
             //hidePointer();
         }
@@ -153,12 +157,12 @@ function increasePage(page){
     showLArrow();
     
     if(x.matches){
-        if(page == 4){
+        if(page == 6){
             hideRArrow();
             showLArrow();
         }
     }else{
-        if(page == 2){
+        if(page == 4){
             hideRArrow();
             showLArrow();
         }
