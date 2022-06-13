@@ -9,7 +9,7 @@ body{
 #nav-arrows{
     font-size: 25px;
     text-align: center;
-    color: #7a7a7a;
+    color: #333333;
 }
 
 #nav-arrows > .fas{
@@ -40,7 +40,7 @@ body{
 }
 
 .p4{
-    background-image: url('./images/wb1.jpg');
+    background-image: url('./images/greek/4.jpg');
 }
 
 .lang-select-btn{
@@ -77,8 +77,8 @@ img{
 
 #album{
     margin: 2% auto;
-    width: 97vw;
-    height: calc(97vw / 1.414);
+    width: 75vw;
+    height: calc(75vw * 1.107422);
 }
 
 .album .turn-page{
@@ -119,7 +119,7 @@ img{
     #album{
         margin: 4% auto;
         width: 177vw;
-        height: calc(177vw / 1.414);
+        height: calc(177vw / 1.107422);
         right: 81vw;
     }
 
@@ -134,7 +134,7 @@ img{
     }
 
     .p2{
-        background-image: url('./images/wbh.jpg');
+        background-image: url('./images/wb3.jpg');
     }
 
     .p3{
@@ -142,7 +142,7 @@ img{
     }
 
     .p4{
-        background-image: url('./images/wbh.jpg');
+        background-image: url('./images/wb3.jpg');
     }
     
     .p5{
@@ -150,10 +150,10 @@ img{
     }
 
     .p6{
-        background-image: url('./images/wbh.jpg');
+        background-image: url('./images/wb3.jpg');
     }
 
     .p7{
-        background-image: url('./images/greek/4a.jpg');
+        background-image: url('./images/greek/4.jpg');
     }
 }
